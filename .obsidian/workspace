@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Music.md",
+            "file": "readme.md",
             "mode": "source",
             "source": false
           }
@@ -69,7 +69,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Music.md",
+                "file": "readme.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -89,9 +89,10 @@
   },
   "active": "9b64ef13a07a4ac4",
   "lastOpenFiles": [
+    "readme.md",
     "Music.md",
-    "RBE3001.md",
-    "Projects.md",
-    "readme.md"
+    "Projects/RBE3002.md",
+    "Projects/RBE3001.md",
+    "Projects.md"
   ]
 }
