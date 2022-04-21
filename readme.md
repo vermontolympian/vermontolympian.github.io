@@ -4,4 +4,4 @@
 I am a robotics engineering student at Worcester Polytechnic Institute. 
 
 View my projects [here](Projects.md)
-View my music playlists [here](index.html)
+View my music playlists [here](Music.html)
