@@ -7,8 +7,12 @@
         "id": "67e25225cbec621a",
         "type": "leaf",
         "state": {
-          "type": "empty",
-          "state": {}
+          "type": "markdown",
+          "state": {
+            "file": "Music.md",
+            "mode": "source",
+            "source": false
+          }
         }
       }
     ],
@@ -65,6 +69,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Music.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -84,8 +89,8 @@
   },
   "active": "67e25225cbec621a",
   "lastOpenFiles": [
-    "readme.md",
     "Music.md",
+    "readme.md",
     "Projects/RBE3002.md",
     "Projects/RBE3001.md",
     "Projects.md"
