@@ -2,74 +2,114 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Function start</title>
+    <title>Brandon Simpson's Online Portfolio</title>
     <style>
-        .msgBox {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%,-50%);
-            width: 242px;
-            background: #eee;
-            padding-left: 82px;
-            background-position: 25px center;
-            background-repeat: no-repeat;
-        }
+        /*.msgBox {*/
+        /*    position: absolute;*/
+        /*    top: 50%;*/
+        /*    left: 50%;*/
+        /*    transform: translate(-50%,-50%);*/
+        /*    width: 242px;*/
+        /*    background: #eee;*/
+        /*    padding-left: 82px;*/
+        /*    background-position: 25px center;*/
+        /*    background-repeat: no-repeat;*/
+        /*}*/
 
-        .msgBox p {
-            line-height: 1.5;
-            padding: 10px 20px;
-            color: #333;
-        }
+        /*.msgBox p {*/
+        /*    line-height: 1.5;*/
+        /*    padding: 10px 20px;*/
+        /*    color: #333;*/
+        /*}*/
 
-        .msgBox button {
-            background: none;
+        /*.msgBox button {*/
+        /*    background: red;*/
+        /*    border: none;*/
+        /*    position: absolute;*/
+        /*    top: 0;*/
+        /*    right: 0;*/
+        /*    font-size: 1.1rem;*/
+        /*    color: #aaa;*/
+        /*}*/
+
+        .button {
             border: none;
-            position: absolute;
-            top: 0;
-            right: 0;
-            font-size: 1.1rem;
-            color: #aaa;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .button1 {
+            background-color: white;
+            color: black;
+            border: 2px solid #4CAF50;
+        }
+
+        .button1:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .button2 {
+            background-color: white;
+            color: black;
+            border: #008CBA;
+        }
+
+        .button2:hover {
+            background-color: #008CBA;
+            color: white;
         }
 
     </style>
 </head>
 <body>
+
+<h1>Brandon Simpson's Online Portfolio</h1>
+<p> Use the :hover selector to change the style of the button</p>
+
 <button>Display message box</button>
+<button class=""button button1">Green</button>
+<button class=""button button2">Blue</button>
 
-<script>
-    const btn = document.querySelector('button');
-    btn.addEventListener('click', ()=>displayMessage("Hello world!", 'chat'));
+<!--<script>-->
+<!--    const btn = document.querySelector('btn1');-->
+<!--    btn.addEventListener('click', ()=>displayMessage("Hello world!", 'chat'));-->
 
 
-    function displayMessage(msgText, msgType){
-        const body = document.body;
+<!--    function displayMessage(msgText, msgType){-->
+<!--        const body = document.body;-->
 
-        const panel = document.createElement('div');
-        panel.setAttribute('class','msgBox');
-        body.appendChild(panel);
+<!--        const panel = document.createElement('div');-->
+<!--        panel.setAttribute('class','msgBox');-->
+<!--        body.appendChild(panel);-->
 
-        const msg = document.createElement('p');
-        msg.textContent = msgText;
-        panel.appendChild(msg);
+<!--        const msg = document.createElement('p');-->
+<!--        msg.textContent = msgText;-->
+<!--        panel.appendChild(msg);-->
 
-        const closeBtn = document.createElement('button');
-        closeBtn.textContent = 'x';
-        panel.appendChild(closeBtn);
+<!--        const closeBtn = document.createElement('button');-->
+<!--        closeBtn.textContent = 'x';-->
+<!--        panel.appendChild(closeBtn);-->
 
-        closeBtn.addEventListener('click', () => panel.parentNode.removeChild(panel));
+<!--        closeBtn.addEventListener('click', () => panel.parentNode.removeChild(panel));-->
 
-        if (msgType === 'warning') {
-            msg.style.backgroundImage = 'url(icons/warning.png)';
-            panel.style.backgroundColor = 'red';
-        } else if (msgType === 'chat') {
-            msg.style.backgroundImage = 'url(icons/chat.png)';
-            panel.style.backgroundColor = 'aqua';
-        } else {
-            msg.style.paddingLeft = '20px';
-        }
-    }
+<!--        if (msgType === 'warning') {-->
+<!--            msg.style.backgroundImage = 'url(icons/warning.png)';-->
+<!--            panel.style.backgroundColor = 'red';-->
+<!--        } else if (msgType === 'chat') {-->
+<!--            msg.style.backgroundImage = 'url(icons/chat.png)';-->
+<!--            panel.style.backgroundColor = 'aqua';-->
+<!--        } else {-->
+<!--            msg.style.paddingLeft = '20px';-->
+<!--        }-->
+<!--    }-->
 
-</script>
+<!--</script>-->
 </body>
 </html>
