@@ -32,6 +32,11 @@
         /*    color: #aaa;*/
         /*}*/
 
+        .dark-mode {
+            background-color: #000;
+            color: #fff;
+        }
+
         .button {
             border: none;
             color: white;
@@ -76,6 +81,7 @@
 <button>Display message box</button>
 <button class="button button1">Green</button>
 <button class="button button2">Blue</button>
+<button onclick="toggleDarkMode()">Toggle Dark Mode</button>
 
 <script>
     const btn = document.querySelector('button');
@@ -110,6 +116,11 @@
         }
     }
 
+
+    function toggleDarkMode() {
+        var element = document.body;
+        element.classList.toggle('dark-mode');
+    }
 </script>
 </body>
 </html>
