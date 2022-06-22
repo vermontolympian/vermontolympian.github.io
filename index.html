@@ -4,36 +4,8 @@
     <meta charset="utf-8">
     <title>Brandon Simpson's Online Portfolio</title>
     <style>
-        /*.msgBox {*/
-        /*    position: absolute;*/
-        /*    top: 50%;*/
-        /*    left: 50%;*/
-        /*    transform: translate(-50%,-50%);*/
-        /*    width: 242px;*/
-        /*    background: #eee;*/
-        /*    padding-left: 82px;*/
-        /*    background-position: 25px center;*/
-        /*    background-repeat: no-repeat;*/
-        /*}*/
-
-        /*.msgBox p {*/
-        /*    line-height: 1.5;*/
-        /*    padding: 10px 20px;*/
-        /*    color: #333;*/
-        /*}*/
-
-        /*.msgBox button {*/
-        /*    background: red;*/
-        /*    border: none;*/
-        /*    position: absolute;*/
-        /*    top: 0;*/
-        /*    right: 0;*/
-        /*    font-size: 1.1rem;*/
-        /*    color: #aaa;*/
-        /*}*/
-
         .dark-mode {
-            background-color: #000;
+            background-color: #373737;
             color: #fff;
         }
 
@@ -76,7 +48,12 @@
 <body>
 
 <h1>Brandon Simpson's Online Portfolio</h1>
-<p> Use the :hover selector to change the style of the button</p>
+
+
+<form id="form" onsubmit="return false;">
+    <input style="position:absolute; top:80%; left:5%; width:40%;" type="text" id="userInput" />
+    <input style="position:absolute; top:50%; left:5%; width:40%;" type="submit" onclick="displayError();" />
+</form>
 
 <button>Display message box</button>
 <button class="button button1">Green</button>
@@ -87,6 +64,10 @@
     const btn = document.querySelector('button');
     btn.addEventListener('click', ()=>displayMessage("Hello world!", 'chat'));
 
+    function displayError() {
+        const input = document.getElementById("userInput").value;
+        displayMessage(input, 'warning');
+    }
 
     function displayMessage(msgText, msgType){
         const body = document.body;
@@ -118,7 +99,7 @@
 
 
     function toggleDarkMode() {
-        var element = document.body;
+        const element = document.body;
         element.classList.toggle('dark-mode');
     }
 </script>
