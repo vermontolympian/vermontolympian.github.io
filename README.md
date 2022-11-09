@@ -10,8 +10,8 @@ View my LinkedIn [here](www.linkedin.com/in/brandon-g-simpson)
 
 
 
-<object data="https://www.linkedin.com/in/brandon-g-simpson/overlay/1635507743114/single-media-viewer/" type="application/pdf" width="700px" height="700px">
-    <embed src="https://www.linkedin.com/in/brandon-g-simpson/overlay/1635507743114/single-media-viewer/">
-        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="https://www.linkedin.com/in/brandon-g-simpson/overlay/1635507743114/single-media-viewer/">Download PDF</a>.</p>
+<object data="https://github.com/vermontolympian/vermontolympian.github.io/blob/master/BrandonSimpsonResume.pdf" type="application/pdf" width="700px" height="700px">
+    <embed src="https://github.com/vermontolympian/vermontolympian.github.io/blob/master/BrandonSimpsonResume.pdf">
+        <p>To download a PDF of my resume: <a href="https://github.com/vermontolympian/vermontolympian.github.io/blob/master/BrandonSimpsonResume.pdf">Download PDF</a>.</p>
     </embed>
 </object>
