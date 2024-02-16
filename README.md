@@ -1,6 +1,6 @@
 **Hello and welcome to my online portfolio**
 
-I am a BS/MS robotics engineering student at Worcester Polytechnic Institute. 
+I am a mechanical systems engineer on the advanced R&D team at DEKA R&D, and completing my MS robotics engineering at Worcester Polytechnic Institute. 
 
 View my Google Scholar Profile [here](https://scholar.google.com/citations?hl=en&user=C1Lks9kAAAAJ)
 
