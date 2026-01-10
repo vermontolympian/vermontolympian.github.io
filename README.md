@@ -6,6 +6,6 @@ View my Google Scholar Profile [here](https://scholar.google.com/citations?hl=en
 
 View my GitHub [here](https://github.com/vermontolympian)
 
-View my LinkedIn [here](www.linkedin.com/in/brandon-g-simpson)
+View my LinkedIn [here](https://linkedin.com/in/brandon-g-simpson)
 
 View my Resume [here](https://github.com/vermontolympian/vermontolympian.github.io/blob/master/BrandonSimpsonResume.pdf)
