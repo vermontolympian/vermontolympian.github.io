@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects — Brandon Simpson</title>
+<meta name="description" content="Brandon Simpson — Robotics Engineer. BS &amp; MS in Robotics Engineering, WPI. Advanced R&amp;D at DEKA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div class="grid-overlay" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand"><span class="brand-bracket">&lt;</span>Brandon Simpson<span class="brand-bracket">/&gt;</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav-links" id="navLinks">
+      <a href="about.html">About</a>
+      <a href="projects.html" class="active" aria-current="page">Projects</a>
+      <a href="skills.html">Skills</a>
+      <a href="contact.html">Contact</a>
+      <a href="BrandonSimpsonResume.pdf" class="btn btn-small" target="_blank" rel="noopener">Resume</a>
+    </nav>
+  </div>
+</header>
+
+<main class="page">
+  <section id="projects" class="section">
+    <h2 class="section-title">Projects</h2>
+    <div class="card-grid">
+      <a class="card" href="projects/quadcopter-rl.html">
+        <div class="card-head">
+          <h3>Quadcopter RL Control</h3>
+          <span class="card-arrow">&rarr;</span>
+        </div>
+        <p>Deep Q-Network that flies a quadcopter through obstacles autonomously.</p>
+        <div class="card-tags">
+          <span>Deep Q-Network</span><span>Motion Primitives</span><span>RL</span>
+        </div>
+      </a>
+      <a class="card" href="projects/swarm-predator-prey.html">
+        <div class="card-head">
+          <h3>Swarm Predator-Prey Simulation</h3>
+          <span class="card-arrow">&rarr;</span>
+        </div>
+        <p>Python simulation and phase analysis of emergent swarm behavior.</p>
+        <div class="card-tags">
+          <span>Python</span><span>Swarm Robotics</span><span>Simulation</span>
+        </div>
+      </a>
+      <a class="card" href="projects/rbe3001.html">
+        <div class="card-head">
+          <h3>Robotic Pick &amp; Place</h3>
+          <span class="card-arrow">&rarr;</span>
+        </div>
+        <p>3-DOF manipulator combining vision and kinematics for dynamic pick-and-place. (RBE 3001)</p>
+        <div class="card-tags">
+          <span>Kinematics</span><span>Vision</span><span>Manipulation</span>
+        </div>
+      </a>
+      <a class="card" href="projects/rbe3002.html">
+        <div class="card-head">
+          <h3>RBE 3002</h3>
+          <span class="card-arrow">&rarr;</span>
+        </div>
+        <p>Unified Robotics II — mobile robot autonomy, mapping, and path planning.</p>
+        <div class="card-tags">
+          <span>ROS</span><span>SLAM</span><span>Path Planning</span>
+        </div>
+      </a>
+      <a class="card" href="projects/iqp-afm.html">
+        <div class="card-head">
+          <h3>Microtechnology PBL Module</h3>
+          <span class="card-arrow">&rarr;</span>
+        </div>
+        <p>Project-based learning module on atomic force microscopy with OST Switzerland.</p>
+        <div class="card-tags">
+          <span>Research</span><span>Education</span><span>AFM</span>
+        </div>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>&copy; <span id="year"></span> Brandon Simpson</p>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
