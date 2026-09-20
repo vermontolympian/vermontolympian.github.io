@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RBE 3001 — Brandon Simpson</title>
+<title>Robotic Pick &amp; Place — Brandon Simpson</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -12,22 +12,35 @@
 <body>
 <div class="grid-overlay" aria-hidden="true"></div>
 
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="../index.html" class="brand"><span class="brand-bracket">&lt;</span>Brandon Simpson<span class="brand-bracket">/&gt;</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav-links" id="navLinks">
+      <a href="../about.html">About</a>
+      <a href="../projects.html" class="active" aria-current="page">Projects</a>
+      <a href="../skills.html">Skills</a>
+      <a href="../contact.html">Contact</a>
+      <a href="../BrandonSimpsonResume.pdf" class="btn btn-small" target="_blank" rel="noopener">Resume</a>
+    </nav>
+  </div>
+</header>
+
 <main class="detail">
-  <a class="back-link" href="../index.html#projects">&larr; Back to projects</a>
-  <h1>RBE 3001</h1>
-  <p class="detail-meta">Unified Robotics I — Worcester Polytechnic Institute</p>
+  <a class="back-link" href="../projects.html">&larr; Back to projects</a>
+  <h1>Robotic Pick &amp; Place</h1>
+  <p class="detail-meta">RBE 3001 &middot; Unified Robotics I &middot; January &ndash; March 2022</p>
   <div class="detail-body">
-    <p>
-      Focused on the foundations of robotic manipulation: forward and inverse
-      kinematics, Jacobians, and closed-loop control of a robotic arm.
-    </p>
-    <p>
-      Work included modeling arm kinematics, implementing trajectory and
-      motion control, and integrating computer vision for object detection
-      and pick-and-place tasks.
-    </p>
+    <p>Built a 3-DOF manipulator system interfacing vision detection with kinematics to perform dynamic pick-and-place tasks.</p>
+    <p>Through image processing, the system detects and locates objects of a specific color. Using forward and inverse position and velocity kinematics, we developed a program to command the arm to pick and place colored spheres until none remained in the workspace.</p>
+    <p>The system could also sort a specific non-spherical random object and dynamically track a moving object.</p>
     <div class="card-tags">
-      <span>Kinematics</span><span>Jacobians</span><span>Motion Control</span><span>Computer Vision</span>
+      <span>Forward/Inverse Kinematics</span><span>Velocity Kinematics</span><span>Computer Vision</span><span>Manipulation</span>
+    </div>
+    <div class="detail-links">
+      <a class="btn" href="https://youtu.be/KR9OcC8GAKc" target="_blank" rel="noopener">Watch the demo</a>
     </div>
   </div>
 </main>

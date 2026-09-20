@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RBE 3002 — Brandon Simpson</title>
+<title>Reinforcement Learning for Quadcopter Control — Brandon Simpson</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -30,21 +30,16 @@
 
 <main class="detail">
   <a class="back-link" href="../projects.html">&larr; Back to projects</a>
-  <h1>RBE 3002</h1>
-  <p class="detail-meta">Unified Robotics II — Worcester Polytechnic Institute</p>
+  <h1>Reinforcement Learning for Quadcopter Control</h1>
+  <p class="detail-meta">Graduate coursework &middot; January &ndash; May 2024</p>
   <div class="detail-body">
-    <p>
-      Focused on mobile robot autonomy: probabilistic localization, occupancy
-      grid mapping, and path planning on a ROS-based differential-drive
-      platform.
-    </p>
-    <p>
-      Work included implementing frontier-based exploration, A* path
-      planning, and closed-loop navigation to autonomously map and traverse
-      an unknown environment.
-    </p>
+    <p>Trained a Deep Q-Network to control a quadcopter to autonomously avoid obstacles.</p>
+    <p>A low-level quadcopter controller from a library handled stabilization, while motion primitives discretized the action space so the policy could be learned more easily and run as a real-time controller.</p>
     <div class="card-tags">
-      <span>ROS</span><span>SLAM</span><span>A* Path Planning</span><span>Autonomous Exploration</span>
+      <span>Deep Q-Network</span><span>Reinforcement Learning</span><span>Motion Primitives</span><span>Python</span>
+    </div>
+    <div class="detail-links">
+      <a class="btn" href="https://youtu.be/dtxQWRjzjj8" target="_blank" rel="noopener">Watch the demo</a>
     </div>
   </div>
 </main>

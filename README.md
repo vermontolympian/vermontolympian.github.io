@@ -1,6 +1,6 @@
 **Hello and welcome to my online portfolio**
 
-I am a robotics engineer on the advanced R&D team at DEKA R&D. I hold both a BS and MS in Robotic Engineering from Worcester Polytechnic Institute.
+I am a robotics engineer at DEKA R&D, building real-time control systems and electromechanical equipment for medical and automated manufacturing devices. I hold both a BS and MS in Robotic Engineering from Worcester Polytechnic Institute.
 
 View my Google Scholar Profile [here](https://scholar.google.com/citations?hl=en&user=C1Lks9kAAAAJ)
 
