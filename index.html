@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/style.css?v=3">
 </head>
 <body>
 <div class="grid-overlay" aria-hidden="true"></div>
@@ -55,14 +55,15 @@
   </section>
 
   <section class="stage" aria-label="Animated 3D printer building a robot">
-    <canvas id="printerCanvas" role="img" aria-label="A 3D printer prints a small robot, which then walks off the page"></canvas>
-    <div class="stage-hud">
-      <span class="stage-status" id="printerStatus" aria-live="off">UNIT 001 &middot; printing 0%</span>
-      <span class="stage-hint">click the canvas when a robot is alive</span>
-      <span class="stage-controls">
-        <button class="btn btn-small" id="printerPause" type="button" aria-pressed="false">Pause</button>
-        <button class="btn btn-small" id="printerSpeed" type="button" aria-label="Playback speed">1&times;</button>
-      </span>
+    <div class="stage-card">
+      <canvas id="printerCanvas" role="img" title="Click the robot to make it hop" aria-label="A 3D printer prints a small robot, which then walks out of the room through an exit door"></canvas>
+      <div class="stage-hud">
+        <span class="stage-status"><i class="stage-dot" aria-hidden="true"></i><span id="printerStatus">UNIT 001 &middot; printing 0%</span></span>
+        <span class="stage-controls">
+          <button class="btn btn-small" id="printerPause" type="button" aria-pressed="false">Pause</button>
+          <button class="btn btn-small" id="printerSpeed" type="button" aria-label="Playback speed">1&times;</button>
+        </span>
+      </div>
     </div>
   </section>
 </main>
@@ -72,6 +73,6 @@
 </footer>
 
 <script src="assets/js/main.js"></script>
-<script src="assets/js/printer.js"></script>
+<script src="assets/js/printer.js?v=3"></script>
 </body>
 </html>

@@ -421,36 +421,76 @@ a { color: inherit; text-decoration: none; }
 .stage {
   position: relative;
   z-index: 1;
-  width: 100%;
-  overflow: hidden;
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  background: linear-gradient(180deg, transparent, rgba(94, 234, 212, 0.03));
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
 }
 
-.stage canvas {
+.stage-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background:
+    radial-gradient(ellipse 60% 70% at 40% 40%, rgba(94, 234, 212, 0.06), transparent 70%),
+    var(--bg-elevated);
+}
+
+.stage-card canvas {
   display: block;
   width: 100%;
-  height: clamp(340px, 46vw, 470px);
+  height: clamp(440px, 58vw, 700px);
   cursor: pointer;
 }
 
 .stage-hud {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0.75rem 1.5rem;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  right: 1rem;
   display: flex;
-  flex-wrap: wrap;
+  justify-content: space-between;
   align-items: center;
-  gap: 0.75rem 1.5rem;
+  gap: 0.75rem;
+  pointer-events: none;
   font-family: var(--mono);
-  font-size: 0.8rem;
-  color: var(--text-dim);
+  font-size: 0.78rem;
 }
 
-.stage-status { color: var(--accent); }
-.stage-hint { flex: 1; }
+.stage-status,
+.stage-controls .btn {
+  pointer-events: auto;
+  background: rgba(10, 14, 20, 0.75);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(6px);
+}
+
+.stage-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  color: var(--accent);
+  letter-spacing: 0.02em;
+}
+
+.stage-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+}
+
 .stage-controls { display: flex; gap: 0.5rem; }
+
+.stage-controls .btn {
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  cursor: pointer;
+}
 
 button.btn {
   background: transparent;

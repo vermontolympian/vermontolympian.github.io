@@ -12,15 +12,22 @@
 
   const B = 6; // bed half-size
   const H = 8; // robot height
-  const FLOOR_Z = -0.6;
-  const PLINTH_Z = -2.2;
-  const POST_H = 15;
-  const ARM_Z = 13.4;
-  const STRIDE = 4.2;
-  const WALK_TH = (-22 * Math.PI) / 180;
+  const POST_H = 12.5;
+  const ARM_Z = 11.2;
+  const STRIDE = 3;
+  // Room: floor at z=0, back wall along y=RY0 with an exit door at x=DOOR_X
+  const RX0 = -8, RY0 = -11, RY1 = 8.5;
+  const DOOR_X = 13, DOOR_W = 4.8, DOOR_H = 9.8;
+  const WALL_H = 11.5, WT = 0.6;
+  const RX1 = DOOR_X + 6;
+  const L1 = DOOR_X, L2 = 17;
+  const TURN = 0.8, RAMP = 0.7;
   const HUES = [172, 200, 265, 38, 335];
   const C30 = Math.cos(Math.PI / 6);
   const S30 = 0.5;
+  const TOTAL_D = L1 + L2;
+  const V0 = TOTAL_D / (T.walk - TURN - RAMP / 2);
+  const TAU1 = L1 / V0 + RAMP / 2;
 
   const BODY = [196, 210, 224];
   const DARK = [72, 84, 100];
@@ -76,9 +83,11 @@
     canvas.width = Math.round(W * dpr);
     canvas.height = Math.round(Hpx * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    S = Math.min(Hpx / 33, W / 26);
-    ox = W > 700 ? W * 0.36 : W / 2;
-    oy = (Hpx - 31.5 * S) / 2 + 21.6 * S;
+    S = Math.min(Hpx / 39, W / 43.5);
+    const minX = (RX0 - RY1) * C30, maxX = (RX1 - RY0) * C30;
+    const topY = (RX0 + RY0) * S30 - WALL_H, botY = (RX1 + RY1) * S30 + 1.2;
+    ox = W / 2 - ((minX + maxX) / 2) * S;
+    oy = Hpx / 2 - ((topY + botY) / 2) * S;
   }
 
   const P = (x, y, z) => [ox + (x - y) * C30 * S, oy + (x + y) * S30 * S - z * S];
@@ -143,21 +152,20 @@
       p.printZ = H;
       p.alive = true;
       p.awake = u > 0.2 && (u > 0.32 || Math.sin(u * 90) > 0);
-      p.th = WALK_TH * sm((u - 0.35) / 0.65);
     } else if (t < T.print + T.boot + T.walk) {
-      const u = (t - T.print - T.boot) / T.walk;
-      const a = 0.08;
-      const v = (u < a ? (u * u) / (2 * a) : u - a / 2) / (1 - a / 2);
-      const perUnit = (Math.cos(WALK_TH) - Math.sin(WALK_TH)) * C30 * S;
-      const L = ((W + 6 * S - ox) / perUnit) * v;
+      const w = t - T.print - T.boot;
+      let tau = w, turn = 0;
+      if (w >= TAU1 + TURN) { tau = w - TURN; turn = 1; }
+      else if (w >= TAU1) { tau = TAU1; turn = (w - TAU1) / TURN; }
+      const d = Math.min(TOTAL_D, tau < RAMP ? (V0 * tau * tau) / (2 * RAMP) : V0 * (tau - RAMP / 2));
       p.printZ = H;
       p.alive = true;
       p.awake = true;
-      p.th = WALK_TH;
-      p.px = L * Math.cos(WALK_TH);
-      p.py = L * Math.sin(WALK_TH);
-      p.phi = (L / STRIDE) * Math.PI * 2;
-      p.amp = Math.min(1, u / a);
+      p.th = (-Math.PI / 2) * sm(turn);
+      p.px = Math.min(d, L1);
+      p.py = -Math.max(0, d - L1);
+      p.phi = (d / STRIDE) * Math.PI * 2;
+      p.amp = Math.min(1, tau / RAMP) * (turn > 0 && turn < 1 ? Math.abs(1 - 2 * turn) : 1);
     } else {
       p.gone = true;
     }
@@ -178,7 +186,7 @@
       tz = pz;
       r = 16;
     } else if (t < T.print + T.boot + T.walk) {
-      tx = -B + 1; ty = -B + 1; tz = 11.5; r = 2.5;
+      tx = -B + 1; ty = -B + 1; tz = 9.2; r = 2.5;
     } else {
       tx = 0; ty = 0.9; tz = 0.5; r = 2.2;
     }
@@ -187,27 +195,81 @@
     nz = t < T.print ? tz : nz + (tz - nz) * k(r);
   }
 
-  function drawPrinter() {
-    // plinth, bed
-    cuboid(0, 0, 2 * B + 1.4, 2 * B + 1.4, 0, PLINTH_Z, FLOOR_Z - PLINTH_Z, [34, 42, 54]);
-    cuboid(0, 0, 2 * B, 2 * B, 0, FLOOR_Z, 0.6, [46, 60, 76], [26, 36, 48]);
-    ctx.strokeStyle = rgb(accent, 1);
-    ctx.globalAlpha = 0.18;
+  const hw = DOOR_W / 2;
+
+  function drawRoom() {
+    // dark space behind the doorway
+    const by = RY0 - WT - 0.05;
+    const pq = [P(DOOR_X - hw - 0.4, by, -0.6), P(DOOR_X + hw + 0.4, by, -0.6),
+      P(DOOR_X + hw + 0.4, by, DOOR_H + 0.4), P(DOOR_X - hw - 0.4, by, DOOR_H + 0.4)];
+    poly(pq, "#04070b");
+    const g = ctx.createLinearGradient(0, pq[0][1], 0, pq[3][1]);
+    g.addColorStop(0, "rgba(94,234,212,0.20)");
+    g.addColorStop(1, "rgba(94,234,212,0)");
+    poly(pq, g);
+
+    // floor
+    cuboid((RX0 + RX1) / 2, (RY0 + RY1) / 2, RX1 - RX0, RY1 - RY0, 0, -1.2, 1.2, [36, 46, 60], [28, 38, 50]);
+    ctx.strokeStyle = "rgba(94,234,212,0.07)";
     ctx.lineWidth = 1;
     ctx.beginPath();
-    for (let i = 0; i <= 6; i++) {
-      const g = -B + (i * 2 * B) / 6;
-      let a = P(g, -B, 0), b = P(g, B, 0);
+    for (let x = RX0; x <= RX1; x += 2) {
+      const a = P(x, RY0, 0), b = P(x, RY1, 0);
       ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]);
-      a = P(-B, g, 0); b = P(B, g, 0);
+    }
+    for (let y = RY0; y <= RY1; y += 2) {
+      const a = P(RX0, y, 0), b = P(RX1, y, 0);
+      ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]);
+    }
+    ctx.stroke();
+
+    // print bed inlay
+    poly([P(-B, -B, 0), P(B, -B, 0), P(B, B, 0), P(-B, B, 0)], "#1a2532", rgb(accent));
+    ctx.strokeStyle = rgb(accent);
+    ctx.globalAlpha = 0.2;
+    ctx.beginPath();
+    for (let i = 1; i < 6; i++) {
+      const v = -B + (i * 2 * B) / 6;
+      let a = P(v, -B, 0), b = P(v, B, 0);
+      ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]);
+      a = P(-B, v, 0); b = P(B, v, 0);
       ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]);
     }
     ctx.stroke();
     ctx.globalAlpha = 1;
-    // posts + rail
+
+    // walls
+    const wc = [44, 56, 74], wt = [58, 72, 92];
+    cuboid(RX0 - WT / 2, (RY0 - WT + RY1) / 2, WT, RY1 - RY0 + WT, 0, 0, WALL_H, wc, wt);
+    const wall = (x0, x1, z0, z1) =>
+      cuboid((x0 + x1) / 2, RY0 - WT / 2, x1 - x0, WT, 0, z0, z1 - z0, wc, wt);
+    wall(RX0 - WT, DOOR_X - hw, 0, WALL_H);
+    wall(DOOR_X + hw, RX1, 0, WALL_H);
+    wall(DOOR_X - hw, DOOR_X + hw, DOOR_H, WALL_H);
+
+    // door frame + exit sign
+    ctx.save();
+    ctx.strokeStyle = "rgb(94,234,212)";
+    ctx.shadowColor = "rgb(94,234,212)";
+    ctx.shadowBlur = 10;
+    ctx.lineWidth = Math.max(1.5, S * 0.12);
+    ctx.lineJoin = "round";
+    ctx.beginPath();
+    [P(DOOR_X - hw, RY0, 0), P(DOOR_X - hw, RY0, DOOR_H), P(DOOR_X + hw, RY0, DOOR_H), P(DOOR_X + hw, RY0, 0)]
+      .forEach((q, i) => (i ? ctx.lineTo(q[0], q[1]) : ctx.moveTo(q[0], q[1])));
+    ctx.stroke();
+    ctx.restore();
+    ctx.save();
+    ctx.shadowColor = "rgb(94,234,212)";
+    ctx.shadowBlur = 12;
+    cuboid(DOOR_X, RY0 + 0.16, 2.4, 0.3, 0, DOOR_H + 0.45, 0.7, [94, 234, 212]);
+    ctx.restore();
+  }
+
+  function drawPrinter() {
     const px = -B - 0.6;
-    cuboid(px, -B - 0.6, 0.7, 0.7, 0, PLINTH_Z, POST_H - PLINTH_Z, [58, 70, 88]);
-    cuboid(px, B + 0.6, 0.7, 0.7, 0, PLINTH_Z, POST_H - PLINTH_Z, [58, 70, 88]);
+    cuboid(px, -B - 0.6, 0.7, 0.7, 0, 0, POST_H, [58, 70, 88]);
+    cuboid(px, B + 0.6, 0.7, 0.7, 0, 0, POST_H, [58, 70, 88]);
     cuboid(px, 0, 0.7, 2 * B + 1.9, 0, POST_H - 0.9, 0.9, [70, 84, 104]);
   }
 
@@ -237,7 +299,7 @@
     const hopZ = hopT >= 0 ? 2.6 * Math.sin((Math.PI * hopT) / 0.7) : 0;
     const bob = p.amp * 0.12 * Math.cos(2 * p.phi);
 
-    if (p.alive) {
+    if (p.alive && p.py > RY0 + 1.5) {
       const c = P(p.px, p.py, 0);
       ctx.fillStyle = `rgba(0,0,0,${0.3 * (1 - hopZ / 4)})`;
       ctx.beginPath();
@@ -274,18 +336,32 @@
         if (p.awake) { col = accent; glow = true; } else col = OFF;
       }
       const top = p.printing && ph < q.h ? mix(col, [255, 150, 70], 0.7) : col;
+      const behind = it.cy < RY0;
+      ctx.save();
+      if (behind) {
+        // only visible through the doorway, fading into the dark
+        const a = P(DOOR_X - hw, RY0, DOOR_H);
+        ctx.beginPath();
+        [P(DOOR_X - hw, RY0 - WT, 0), P(DOOR_X + hw, RY0, 0), P(DOOR_X + hw, RY0, DOOR_H),
+          [a[0] + WT * C30 * S, a[1] + WT * S30 * S]]
+          .forEach((v, i) => (i ? ctx.lineTo(v[0], v[1]) : ctx.moveTo(v[0], v[1])));
+        ctx.closePath();
+        ctx.clip();
+        ctx.globalAlpha = 1 - sm((RY0 - it.cy - 1.5) / 4.5);
+      }
       if (glow) {
         ctx.shadowColor = rgb(accent);
         ctx.shadowBlur = 14;
       }
       cuboid(it.cx, it.cy, q.w, q.d, p.th, it.z, ph, col, top, true);
-      ctx.shadowBlur = 0;
+      ctx.restore();
     }
   }
 
   function draw() {
     ctx.clearRect(0, 0, W, Hpx);
     const p = pose();
+    drawRoom();
     drawPrinter();
     drawRobot(p);
     drawGantry(p);
@@ -353,7 +429,7 @@
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     paused = true;
     t = T.print + T.boot * 0.95;
-    nz = 11.5;
+    nz = 9.2;
     pauseBtn.textContent = "Play";
   }
 
