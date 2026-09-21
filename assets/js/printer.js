@@ -247,6 +247,22 @@
     wall(DOOR_X + hw, RX1, 0, WALL_H);
     wall(DOOR_X - hw, DOOR_X + hw, DOOR_H, WALL_H);
 
+    // lab sign, mounted on the back wall
+    const SX = 3, SZ = 8.2;
+    cuboid(SX, RY0 + 0.15, 11, 0.3, 0, SZ - 1.3, 2.6, [22, 30, 42], [22, 30, 42]);
+    ctx.save();
+    const k = 1 / 20;
+    const o = P(SX, RY0 + 0.32, SZ);
+    ctx.transform(C30 * S * k, S30 * S * k, 0, S * k, o[0], o[1]);
+    ctx.font = "700 " + 20 * 1.15 + "px 'JetBrains Mono', ui-monospace, monospace";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    ctx.fillStyle = "rgb(94,234,212)";
+    ctx.shadowColor = "rgb(94,234,212)";
+    ctx.shadowBlur = 10;
+    ctx.fillText("BRANDON'S LAB", 0, 0);
+    ctx.restore();
+
     // door frame + exit sign
     ctx.save();
     ctx.strokeStyle = "rgb(94,234,212)";
