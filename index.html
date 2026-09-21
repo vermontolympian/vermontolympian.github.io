@@ -53,6 +53,18 @@
       </dl>
     </div>
   </section>
+
+  <section class="stage" aria-label="Animated 3D printer building a robot">
+    <canvas id="printerCanvas" role="img" aria-label="A 3D printer prints a small robot, which then walks off the page"></canvas>
+    <div class="stage-hud">
+      <span class="stage-status" id="printerStatus" aria-live="off">UNIT 001 &middot; printing 0%</span>
+      <span class="stage-hint">click the canvas when a robot is alive</span>
+      <span class="stage-controls">
+        <button class="btn btn-small" id="printerPause" type="button" aria-pressed="false">Pause</button>
+        <button class="btn btn-small" id="printerSpeed" type="button" aria-label="Playback speed">1&times;</button>
+      </span>
+    </div>
+  </section>
 </main>
 
 <footer class="footer">
@@ -60,5 +72,6 @@
 </footer>
 
 <script src="assets/js/main.js"></script>
+<script src="assets/js/printer.js"></script>
 </body>
 </html>
